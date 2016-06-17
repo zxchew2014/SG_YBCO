@@ -1,0 +1,52 @@
+<div class="header">
+  <div class="container">
+    <h1>SIGN UP</h1>
+  </div>
+</div>
+
+<div class="create">
+  <div class="container">
+    <p><b>Get ready to create, innovate, and change the world.</b></p>
+    <br>
+    <%= form_for(@user) do |f| %>
+        <%= f.hidden_field :username, :value => "Update Username" %>
+        <%= f.hidden_field :address, :value => "Update Address" %>
+        <%= f.hidden_field :is_admin, :value => false %>
+
+        <% if @user.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b>Errors</b>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.text_field :first_name, class: "form-control", placeholder: "FIRST NAME" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :last_name, class: "form-control", placeholder: "LAST NAME" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :email, class: "form-control", placeholder: "EMAIL ADDRESS" %>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password, class: "form-control", placeholder: "PASSWORD" %>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "PASSWORD CONFIRMATION" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "CREATE ACCOUNT", class: "btn btn-default btn-lg" %>
+        </div>
+    <% end %>
+    <br>
+    <p>By signing up, you agree to our <b><%= link_to 'Terms of Use, Privacy Policy', pages_term_path %></b> and
+      <b><%= link_to 'Community Rules', pages_comrules_path %>.</b></p>
+    <br>
+    <p><b>Already have an account? <%= link_to 'Log in', "session/new" %>.</b></p>
+  </div>
+</div>
